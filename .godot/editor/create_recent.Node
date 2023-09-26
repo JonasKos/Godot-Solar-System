@@ -1,0 +1,12 @@
+MeshInstance3D
+RigidBody3D
+Node3D
+CollisionShape3D
+WorldEnvironment
+RichTextLabel
+OmniLight3D
+CPUParticles3D
+Camera3D
+SpotLight3D
+DirectionalLight3D
+CSGMesh3D

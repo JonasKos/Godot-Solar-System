@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4b22uxdwodvn"]
+
+[ext_resource type="PackedScene" uid="uid://dwhrlolaplegl" path="res://models/earth/scene.gltf" id="1_fqb1a"]
+
+[node name="scene" instance=ExtResource("1_fqb1a")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://db00oyf2e6fs"]
+
+[ext_resource type="PackedScene" uid="uid://ds5ctfb3ibo7a" path="res://models/Sun/scene.gltf" id="1_0kd7i"]
+
+[node name="scene" instance=ExtResource("1_0kd7i")]
+
+[node name="UnstableStarCore" parent="Sketchfab_model/3a2aaa22fb3d4b329318a980ad1bf6d1_fbx/Object_2/RootNode" index="0"]
+transform = Transform3D(0.249864, -0.968281, -4.23249e-08, 0, -4.37114e-08, 1, -0.968281, -0.249864, -1.09219e-08, 0, 0, 0)
+
+[node name="UnstableStarref" parent="Sketchfab_model/3a2aaa22fb3d4b329318a980ad1bf6d1_fbx/Object_2/RootNode" index="1"]
+transform = Transform3D(0.143911, -0.999695, -4.3698e-08, 0, -4.41485e-08, 1.01, -0.999695, -0.143911, -6.29056e-09, 0, 0, 0)

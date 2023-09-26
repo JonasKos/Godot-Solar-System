@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://dgui3hhfn6hvq"]
+
+[ext_resource type="Script" path="res://free_look_camera.gd" id="1_3vn14"]
+[ext_resource type="Script" path="res://simulation.gd" id="1_kad11"]
+[ext_resource type="Script" path="res://PlanetMovement.gd" id="1_n48wp"]
+[ext_resource type="PackedScene" uid="uid://db00oyf2e6fs" path="res://sun.tscn" id="1_pr5mu"]
+[ext_resource type="PackedScene" uid="uid://dwhrlolaplegl" path="res://models/earth/scene.gltf" id="2_n5ffa"]
+[ext_resource type="PackedScene" uid="uid://dys0ol1tvbkpe" path="res://models/mercury/scene.gltf" id="4_fi8jd"]
+[ext_resource type="PackedScene" uid="uid://c48sxlebslx80" path="res://models/Venus/scene.gltf" id="6_fw2ky"]
+[ext_resource type="PackedScene" uid="uid://drxxm1n56d3el" path="res://models/mars/scene.gltf" id="10_kx6lr"]
+[ext_resource type="PackedScene" uid="uid://c3q7vkrj77k1f" path="res://models/Jupiter/scene.gltf" id="11_ld1i6"]
+[ext_resource type="PackedScene" uid="uid://3qlitvvbfmg4" path="res://models/Saturn/scene.gltf" id="12_ft5m7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_timct"]
+radius = 245.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_beoxq"]
+radius = 3.317
+
+[sub_resource type="Environment" id="Environment_fvcau"]
+background_mode = 5
+ambient_light_source = 1
+reflected_light_source = 1
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_kad11")
+
+[node name="SunBody" type="RigidBody3D" parent="."]
+mass = 1000.0
+script = ExtResource("1_n48wp")
+is_sun = true
+initial_velocity = 2.0
+
+[node name="Sun" parent="SunBody" instance=ExtResource("1_pr5mu")]
+transform = Transform3D(24, 0, 7.15256e-07, 0, 24, 0, -7.15256e-07, 0, 24, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SunBody/Sun"]
+transform = Transform3D(1, 2.39011e-09, -2.97063e-08, 0, 0.996779, 0.0801989, 2.98023e-08, -0.0801989, 0.996779, 0, 0, 0)
+light_color = Color(0.998756, 0.991366, 0.806292, 1)
+light_energy = 40.0
+shadow_enabled = true
+omni_range = 1198.49
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SunBody"]
+shape = SubResource("SphereShape3D_timct")
+
+[node name="VenusBody" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 323.211, -1.72925, 0)
+axis_lock_linear_y = true
+script = ExtResource("1_n48wp")
+initial_velocity = 250.0
+
+[node name="Venus" parent="VenusBody" instance=ExtResource("6_fw2ky")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VenusBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05963, 2.06797, 0)
+shape = SubResource("SphereShape3D_beoxq")
+
+[node name="Mercury" parent="." instance=ExtResource("4_fi8jd")]
+transform = Transform3D(0.0104294, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 310.823, 0, 0)
+
+[node name="Earth" parent="." instance=ExtResource("2_n5ffa")]
+transform = Transform3D(0.0470153, 0, 0.0170165, 0, 0.05, 0, -0.0170165, 0, 0.0470153, 348.625, 0, 0)
+
+[node name="Mars" parent="." instance=ExtResource("10_kx6lr")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 383.394, 0, 0)
+
+[node name="Jupiter" parent="." instance=ExtResource("11_ld1i6")]
+transform = Transform3D(12.83, 0, 0, 0, 12.83, 0, 0, 0, 12.83, 447.083, -3.8147e-06, 0)
+
+[node name="Saturn" parent="." instance=ExtResource("12_ft5m7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 687.116, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999915, -0.0130023, 0, 0.0130023, 0.999915, 178.219, 22.999, 305.863)
+environment = SubResource("Environment_fvcau")
+fov = 77.1
+script = ExtResource("1_3vn14")
+sensitivity = null
+default_velocity = 45.3
+speed_scale = 1.76
+boost_speed_multiplier = 6.3
+max_speed = null
+min_speed = null
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+script = ExtResource("1_3vn14")
+sensitivity = null
+default_velocity = null
+speed_scale = null
+boost_speed_multiplier = null
+max_speed = null
+min_speed = null
