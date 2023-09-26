@@ -1,6 +1,5 @@
-[gd_scene load_steps=25 format=3 uid="uid://dgui3hhfn6hvq"]
+[gd_scene load_steps=28 format=3 uid="uid://dgui3hhfn6hvq"]
 
-[ext_resource type="Script" path="res://free_look_camera.gd" id="1_3vn14"]
 [ext_resource type="Script" path="res://simulation.gd" id="1_kad11"]
 [ext_resource type="Script" path="res://PlanetMovement.gd" id="1_n48wp"]
 [ext_resource type="PackedScene" uid="uid://db00oyf2e6fs" path="res://sun.tscn" id="1_pr5mu"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drxxm1n56d3el" path="res://models/mars/scene.gltf" id="10_kx6lr"]
 [ext_resource type="Texture2D" uid="uid://dd3363ef7anb0" path="res://models/sky/textures/material_emissive.png" id="10_teoyy"]
 [ext_resource type="PackedScene" uid="uid://c3q7vkrj77k1f" path="res://models/Jupiter/scene.gltf" id="11_ld1i6"]
+[ext_resource type="Script" path="res://ShootPlanets.gd" id="12_14hjp"]
 [ext_resource type="PackedScene" uid="uid://3qlitvvbfmg4" path="res://models/Saturn/scene.gltf" id="12_ft5m7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_timct"]
@@ -38,6 +38,16 @@ radius = 135.233
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0toav"]
 radius = 10.1937
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o77im"]
+radius = 26.3776
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wl01l"]
+radius = 131.762
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m4xh0"]
+height = 15.659
+radius = 252.449
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sspie"]
 panorama = ExtResource("10_teoyy")
@@ -160,16 +170,58 @@ gravity = Vector3(0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JupiterBody"]
 shape = SubResource("SphereShape3D_ulh0j")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="MercuryBody" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 386.95, 0, 0)
 mass = 0.65
 script = ExtResource("1_n48wp")
 initial_velocity = 200.0
 
-[node name="Mercury" parent="RigidBody3D" instance=ExtResource("4_fi8jd")]
+[node name="Mercury" parent="MercuryBody" instance=ExtResource("4_fi8jd")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="RigidBody3D/Mercury"]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="MercuryBody/Mercury"]
+transform = Transform3D(1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0)
+amount = 100
+lifetime = 19.0
+mesh = SubResource("SphereMesh_dte7k")
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MercuryBody"]
+shape = SubResource("SphereShape3D_0toav")
+
+[node name="MarsBody" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1246.33, 0, 0)
+script = ExtResource("1_n48wp")
+initial_velocity = 400.0
+
+[node name="Mars" parent="MarsBody" instance=ExtResource("10_kx6lr")]
+transform = Transform3D(3.6, 0, 0, 0, 3.6, 0, 0, 0, 3.6, 0, 0, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="MarsBody/Mars"]
+transform = Transform3D(1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0)
+amount = 100
+lifetime = 19.0
+mesh = SubResource("SphereMesh_dte7k")
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarsBody"]
+shape = SubResource("SphereShape3D_o77im")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3388.41, 0, 0)
+script = ExtResource("1_n48wp")
+initial_velocity = 800.0
+
+[node name="Saturn" parent="RigidBody3D" instance=ExtResource("12_ft5m7")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="RigidBody3D/Saturn"]
 transform = Transform3D(1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0)
 amount = 100
 lifetime = 19.0
@@ -180,18 +232,17 @@ direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_0toav")
+shape = SubResource("SphereShape3D_wl01l")
 
-[node name="Mars" parent="." instance=ExtResource("10_kx6lr")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 3000, 0, 0)
-
-[node name="Saturn" parent="." instance=ExtResource("12_ft5m7")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3000, 0, 0)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(0.973777, 0.224814, -0.0348995, -0.224951, 0.97437, 0, 0.034005, 0.00785068, 0.999391, 0, 0, 0)
+shape = SubResource("CylinderShape3D_m4xh0")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 600, 0)
 environment = SubResource("Environment_q3oey")
-script = ExtResource("1_3vn14")
+far = 100000.0
+script = ExtResource("12_14hjp")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
 light_energy = 0.767
