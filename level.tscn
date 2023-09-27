@@ -34,7 +34,7 @@ radius = 20.5303
 radius = 33.758
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ulh0j"]
-radius = 135.233
+radius = 234.848
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0toav"]
 radius = 10.1937
@@ -43,11 +43,11 @@ radius = 10.1937
 radius = 26.3776
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wl01l"]
-radius = 131.762
+radius = 202.961
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m4xh0"]
 height = 15.659
-radius = 252.449
+radius = 388.377
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sspie"]
 panorama = ExtResource("10_teoyy")
@@ -90,7 +90,7 @@ light_color = Color(0.998756, 0.991366, 0.806292, 1)
 light_energy = 100.0
 light_indirect_energy = 1.469
 shadow_enabled = true
-omni_range = 1198.49
+omni_range = 5803.43
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SunBody"]
 shape = SubResource("SphereShape3D_timct")
@@ -155,7 +155,7 @@ script = ExtResource("1_n48wp")
 initial_velocity = 600.0
 
 [node name="Jupiter" parent="JupiterBody" instance=ExtResource("11_ld1i6")]
-transform = Transform3D(69.6893, 6.58758, 0, -6.58758, 69.6893, 0, 0, 0, 70, 0, 0, 0)
+transform = Transform3D(119.467, 11.293, 0, -11.293, 119.467, 0, 0, 0, 120, 0, 0, 0)
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="JupiterBody/Jupiter"]
 transform = Transform3D(1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -219,7 +219,7 @@ script = ExtResource("1_n48wp")
 initial_velocity = 800.0
 
 [node name="Saturn" parent="RigidBody3D" instance=ExtResource("12_ft5m7")]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="RigidBody3D/Saturn"]
 transform = Transform3D(1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0)
