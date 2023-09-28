@@ -239,7 +239,7 @@ transform = Transform3D(0.973777, 0.224814, -0.0348995, -0.224951, 0.97437, 0, 0
 shape = SubResource("CylinderShape3D_m4xh0")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 600, 0)
+transform = Transform3D(1, 0, 0, 0, 0.806548, 0.591169, 0, -0.591169, 0.806548, 266.825, 600, 1227.77)
 environment = SubResource("Environment_q3oey")
 far = 100000.0
 script = ExtResource("12_gla0h")
